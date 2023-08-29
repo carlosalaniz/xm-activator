@@ -367,5 +367,3 @@ app.post("/activate", async (req, res) => {
 
 
 app.listen(port, () => { console.log(`listeing to port ${port}`) })
-
-activate("80E33B4V", null, null)
