@@ -109,10 +109,12 @@ const axiosInstance = wrapper(
 
 // Interceptor to log responses
 axiosInstance.interceptors.response.use(response => {
-    console.log('Response:', JSON.stringify(response.data));
+    if (process.env.debug)
+        console.log('Response:', JSON.stringify(response.data));
     return response;
 }, error => {
-    console.log('Error:', error);
+    if (process.env.debug)
+        console.log('Error:', error);
     return Promise.reject(error);
 });
 
@@ -336,9 +338,8 @@ app.post("/verify-captcha", () => {
 
 var token: AuthTokens = null;
 async function activate(XMDeviceId, lat, long) {
-    console.log(XMDeviceId, lat, long);
     // await XMClient.appConfig();
-    if (!token || token.claims_token.exp - 120000 >= Date.now()) {
+    if (!token || token.claims_token.exp - 120000 <= Date.now()) {
         token = await XMClient.login();
     }
     // await XMClient.versionControl(token.claims_token.value)
@@ -359,11 +360,19 @@ async function activate(XMDeviceId, lat, long) {
     await XMClient.updateDeviceSatRefreshWithPriorityCC(token.claims_token.value, XMDeviceId);
     return account_create_response;
 }
+
 app.post("/activate", async (req, res) => {
     const { XMDeviceId, lat, long } = req.body
-    console.log(XMDeviceId, lat, long, req.body);
-    res.json(await activate(XMDeviceId, lat, long))
+    if (process.env.debug)
+        console.log(XMDeviceId, lat, long, req.body);
+    const result = await activate(XMDeviceId, lat, long);
+    if ("resultData" in result) {
+        return res.json(result.resultData);
+    }
+    if ("errmsg" in result) {
+        return res.json(result.errmsg)
+    }
+    res.json(result)
 })
-
-
+app.use(express.static('public'));
 app.listen(port, () => { console.log(`listeing to port ${port}`) })
