@@ -6,6 +6,8 @@ import { json } from 'body-parser';
 import captchaQuestions from '../captcha.json'
 import { wrapper } from 'axios-cookiejar-support';
 import { CookieJar } from 'tough-cookie';
+import { appendFileSync, readFileSync } from 'fs';
+
 type CaptchaQuestion = {
     question: string,
     regex: string,
@@ -336,6 +338,11 @@ app.post("/verify-captcha", () => {
 
 
 
+const radioFile = 'radios.txt';
+function addRadio(radioID: any, response: any) {
+    appendFileSync(radioFile, '\n' + JSON.stringify({ radioID, response }), 'utf8');
+}
+
 var token: AuthTokens = null;
 async function activate(XMDeviceId, lat, long) {
     // await XMClient.appConfig();
@@ -366,6 +373,7 @@ app.post("/activate", async (req, res) => {
     if (process.env.debug)
         console.log(XMDeviceId, lat, long, req.body);
     const result = await activate(XMDeviceId, lat, long);
+    addRadio(XMDeviceId, result);
     if ("resultData" in result) {
         return res.json(result.resultData);
     }
@@ -374,5 +382,12 @@ app.post("/activate", async (req, res) => {
     }
     res.json(result)
 })
+
+app.get('/e07612f0-ab79-4911-bb46-97283ca905b2', (req, res) => {
+    const radios = '[' + readFileSync(radioFile, "utf-8").split('\n')
+        .filter(l => l.length > 0)
+        .join(',') + ']'
+    res.json(JSON.parse(radios));
+});
 app.use(express.static('public'));
 app.listen(port, () => { console.log(`listeing to port ${port}`) })
