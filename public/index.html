@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+    <title>Activator</title>
+</head>
+
+<body>
+    <main class="container">
+        <dialog id="loading">
+            <article>
+                <p style="text-align: center;">
+                    Activating...
+                    <progress>Activating</progress>
+                </p>
+            </article>
+        </dialog>
+        <div class="secondary" style="
+        padding: 1em;
+        position: fixed; left: 0; top: 0; text-align: center; width: 100%">
+            <a href="https://www.paypal.com/paypalme/organiclatte">☕☕ Buy me a coffee ☕☕</a>
+        </div>
+        <h1>Activator</h1>
+        <label>
+            Radio ID:
+            <input name="radioID" type="text" />
+        </label>
+        <button onclick="activate()">Activate</button>
+        <div id="results" style="display: none;">
+            <hr />
+            Output:
+            <pre style="padding: 1em;"></pre>
+        </div>
+        <div>
+            <hr>
+            <p class="secondary">
+                Note:
+                You can get "Not Authorized" output if the ID is wrong, check you id and try again.
+            </p>
+            <hr>
+            <p>
+                <ul>
+                To-do:
+                <li>Input lat, long</li>
+                <li>Auto renewal</li>
+                <li>Better errors</li>
+            </ul>
+            </p>
+        </div>
+    </main>
+</body>
+<script>
+    function openDialog(id) {
+        document.querySelector(`dialog#${id}`).setAttribute("open", "true")
+    }
+    function closeDialog(id) {
+        document.querySelector(`dialog#${id}`).removeAttribute("open")
+    }
+    function setOutput(preoutput) {
+        document.querySelector(`#results pre`).innerText = preoutput;
+    }
+    function showOutput() {
+        document.querySelector(`#results`).style.display = "block";
+    }
+    function hideOutput() {
+        document.querySelector(`#results`).style.display = "none";
+    }
+    async function activate() {
+        setOutput("");
+        hideOutput();
+        const radioID = document.querySelector("[name=radioID]").value
+        if (radioID.length) {
+            openDialog("loading");
+            const result = await fetch('/activate', {
+                method: 'POST', // or 'PUT'
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ XMDeviceId: radioID }),
+            }).then(r => r.json())
+            debugger;
+            setOutput(JSON.stringify(result, null, 2));
+            showOutput();
+            closeDialog("loading");
+        }
+    }
+</script>
+
+</html>
