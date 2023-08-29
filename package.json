@@ -1,0 +1,28 @@
+{
+    "name": "sxm-activator",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "tsc",
+        "start": "node ./dist/index.js",
+        "start-dev": "ts-node ./src/index.ts",
+        "lint": "eslint --ext .js,.ts ."
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "ts-node": "^10.9.1",
+        "typescript": "^5.2.2"
+    },
+    "dependencies": {
+        "@types/express": "^4.17.17",
+        "axios": "^1.5.0",
+        "axios-cookiejar-support": "^4.0.7",
+        "body-parser": "^1.20.2",
+        "dotenv": "^16.3.1",
+        "express": "^4.18.2",
+        "tough-cookie": "^4.1.3"
+    }
+}

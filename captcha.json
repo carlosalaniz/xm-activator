@@ -1,0 +1,104 @@
+{
+  "questions": [
+    {
+      "question": "What is the third letter in the word 'apple'?",
+      "regex": "^[Pp]$",
+      "options": ["p", "a", "l", "e"]
+    },
+    {
+      "question": "What animal is known as man's best friend?",
+      "regex": "^[Dd]og$",
+      "options": ["Cat", "Dog", "Fish", "Bird"]
+    },
+    {
+      "question": "How many days are there in a week?",
+      "regex": "^7$",
+      "options": ["5", "6", "7", "8"]
+    },
+    {
+      "question": "What is the opposite of 'up'?",
+      "regex": "^[Dd]own$",
+      "options": ["Left", "Right", "Up", "Down"]
+    },
+    {
+      "question": "What is 5+3?",
+      "regex": "^8$",
+      "options": ["6", "7", "8", "9"]
+    },
+    {
+      "question": "What is the color of the sky on a clear day?",
+      "regex": "^[Bb]lue$",
+      "options": ["Green", "Red", "Blue", "Yellow"]
+    },
+    {
+      "question": "What is the sum of the angles in a triangle?",
+      "regex": "^180$",
+      "options": ["90", "180", "270", "360"]
+    },
+    {
+      "question": "What is the capital of France?",
+      "regex": "^[Pp]aris$",
+      "options": ["Berlin", "London", "Paris", "Rome"]
+    },
+    {
+      "question": "What comes after Tuesday?",
+      "regex": "^[Ww]ednesday$",
+      "options": ["Monday", "Tuesday", "Wednesday", "Thursday"]
+    },
+    {
+      "question": "What do you call the liquid that comes from trees and is used to make maple syrup?",
+      "regex": "^[Ss]ap$",
+      "options": ["Juice", "Oil", "Water", "Sap"]
+    },
+    {
+      "question": "What is the freezing point of water in degrees Celsius?",
+      "regex": "^0$",
+      "options": ["-1", "0", "1", "32"]
+    },
+    {
+      "question": "How many continents are there?",
+      "regex": "^7$",
+      "options": ["5", "6", "7", "8"]
+    },
+    {
+      "question": "What is the primary gas found in the Earth's atmosphere?",
+      "regex": "^[Nn]itrogen$",
+      "options": ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"]
+    },
+    {
+      "question": "What planet is known as the Red Planet?",
+      "regex": "^[Mm]ars$",
+      "options": ["Venus", "Mars", "Jupiter", "Saturn"]
+    },
+    {
+      "question": "What is the largest mammal?",
+      "regex": "^[Bb]lue [Ww]hale$",
+      "options": ["Elephant", "Blue Whale", "Orca", "Giraffe"]
+    },
+    {
+      "question": "How many minutes are in an hour?",
+      "regex": "^60$",
+      "options": ["30", "45", "60", "90"]
+    },
+    {
+      "question": "What is the square root of 64?",
+      "regex": "^8$",
+      "options": ["6", "7", "8", "9"]
+    },
+    {
+      "question": "What musical instrument has 88 keys?",
+      "regex": "^[Pp]iano$",
+      "options": ["Violin", "Piano", "Guitar", "Flute"]
+    },
+    {
+      "question": "What is the smallest prime number?",
+      "regex": "^2$",
+      "options": ["0", "1", "2", "3"]
+    },
+    {
+      "question": "What season comes after summer?",
+      "regex": "^[Ff]all$",
+      "options": ["Spring", "Summer", "Fall", "Winter"]
+    }
+  ]
+}
