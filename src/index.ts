@@ -373,7 +373,7 @@ app.post("/activate", async (req, res) => {
     if (process.env.debug)
         console.log(XMDeviceId, lat, long, req.body);
     const result = await activate(XMDeviceId, lat, long);
-    addRadio(XMDeviceId, result);
+    // addRadio(XMDeviceId, result);
     if ("resultData" in result) {
         return res.json(result.resultData);
     }
